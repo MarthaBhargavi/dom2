@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM Manipulation Example</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 50%;
+      margin-top: 20px;
+    }
+    table, th, td {
+      border: 1px solid black;
+    }
+    th, td {
+      padding: 10px;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="username">Hello, User!</h1>
+  <input type="text" id="input-username" placeholder="Enter your name">
+  <button id="submit-username">Submit</button>
+  
+  <table id="data-table">
+    <thead>
+      <tr>
+        <th>S.No</th>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+
+  <script>
+    // Event listener for the submit button to change the username text
+    document.getElementById('submit-username').addEventListener('click', () => {
+      const username = document.getElementById('input-username').value;
+      document.getElementById('username').textContent = `Hello, ${username || 'User'}!`;
+    });
+
+    // Array of names to populate the table
+    const names = ['Alice', 'Bob', 'Charlie', 'Diana', 'Ethan'];
+    const tableBody = document.querySelector('#data-table tbody');
+
+    // Loop through the names array and create rows for each name
+    names.forEach((name, index) => {
+      const row = document.createElement('tr');
+      
+      // Create the cells for S.No and Name
+      const cell1 = document.createElement('td');
+      cell1.textContent = index + 1;
+      const cell2 = document.createElement('td');
+      cell2.textContent = name;
+      
+      // Append the cells to the row
+      row.appendChild(cell1);
+      row.appendChild(cell2);
+      
+      // Append the row to the table body
+      tableBody.appendChild(row);
+    });
+  </script>
+</body>
+</html>
